@@ -1,0 +1,44 @@
+import array
+
+from Tools.scripts.verify_ensurepip_wheels import print_notice
+
+#arr = array.array('i',[16 , 0, -7 , 0 , 16])
+#arr = array.array('i',[99 , 0, -7 , 0 , 16])
+arr = array.array('d',[99 , 0, -7 , 0 , 16])
+for i in range(len(arr)):
+    print(f"{arr[i]:5} {id(arr[i])}")
+
+# 연속적인 공간이 아니라는것 , 파이썬에서는 엄밀히말하면 물리적메모리의 배열이 아니라는점.
+# 배열이라는 것은 물리적인 연결이되어있는 자료구조인데, 파이썬에서는 배열은 물리적으로 연결되어있지 않다.
+# 리스트는 배열이 아니다.
+
+#그래서 배열을 사용하고 싶다면 array클래스를 이용해서 배열을 사용할 수 있다.
+# 다만, 다른점은 한공간에 모여져있다는 것이다. C언어는 정확히 자료형 크기만큼 주소가 다름.
+#
+#     16 2527522456272
+#     0 2527522455760
+#    -7 2527523499632
+#     0 2527522455760
+#    16 2527522456272
+
+# 같은 수는 주소가 같음  > 파이썬에서는 메모리를 아낄라고 SHADOW COPY를 한다.
+
+
+l = [99,99]
+print(id(0), id(1))
+
+
+def move_zeros(a_list):
+    zero_index = 0
+    for index, i in enumerate(a_list):
+        n = l[index]
+        a_list[zero_index] = n
+        if zero_index != index:
+            a_list[index] = 0
+        zero_index += 1
+    return(a_list)
+
+
+a_list = [8,0,3,0,12]
+move_zeros(a_list)
+print(a_list)
