@@ -1,7 +1,11 @@
-l = [99 , 0, -7 , 0 , 16]
-for i in range(len(l)):
-    print(f"{l[i]:3} {id(l[i])}")
+groups = ['Hot', 'Seventeen', 'Black Pink', 'NJZ'] # 아이돌 그룹이름
+ratings = [1,2,4,3] # 좋아하는 순위
 
-# 연속적인 공간이 아니라는것 , 파이썬에서는 엄밀히말하면 물리적메모리의 배열이 아니라는점.
-# 배열이라는 것은 물리적인 연결이되어있는 자료구조인데, 파이썬에서는 배열은 물리적으로 연결되어있지 않다.
-# 리스트는 배열이 아니다.
+groups_raitings = list(zip(groups,ratings ))
+print(groups_raitings)
+# zip안에서는 반복문으로 돌고 있음.
+#짝이 안맞으면 작은 것 기준으로 돈다.
+# 각 인덱스끼리 tuple로 묶어서 zip객체를 반환한다.
+cities = ['Suwon', 'Hwasung', 'Incheon' , 'Incheon' ,'Buchoen', 'Seoul']
+cities = set(cities)
+print(cities)
