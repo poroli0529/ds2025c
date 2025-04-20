@@ -30,7 +30,7 @@ print(id(0), id(1))
 
 def move_zeros(a_list):
     zero_index = 0
-    for index, i in enumerate(a_list):
+    for index, i in enumerate(a_list): // enumerate함수는 순서가 있는 자료형을 인덱스와 값으로 나눠 리턴
         n = l[index]
         a_list[zero_index] = n
         if zero_index != index:
