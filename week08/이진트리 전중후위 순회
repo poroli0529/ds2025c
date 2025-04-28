@@ -1,4 +1,7 @@
-
+# 전위(preorder) 중위(inorder) 후위(postorder)
+# 후위 (접근순서 LRP)
+# 중위 (접근순서 LPR)
+# 전위 (접근순서 PRL) 
 def pre_order(node):
     if node is None:
         return
