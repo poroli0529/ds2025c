@@ -1,0 +1,30 @@
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.link = None
+
+class Stack:
+    def __init__(self):
+        self.top = None
+    
+    def push(self, data):
+        n = Node(data)
+        if self.top == None:
+            self.top = n
+        else: 
+            n.link = self.top
+            self.top = n
+
+    def pop(self):
+        if self.top == None:
+            print("stack is empty!")
+            return -111
+        temp = self.top
+        self.top = self.top.link
+        print(temp.data)
+    
+
+s = Stack()
+
+s.push(1)
+s.pop()
