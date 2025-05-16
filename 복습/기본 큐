@@ -1,0 +1,41 @@
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+
+class Queue:
+    def __init__(self):
+        self.real = None
+        self.front = None
+        self.size = 0
+    
+    def enqueue(self,data):
+        self.size += 1
+        node = Node(data)
+        if self.front is None:
+            self.front = node
+            self.real = node
+        else: 
+            self.real.next = node
+            self.real = node
+
+    def dequeue(self):
+        if self.front == None:
+            return "queue empty"
+        self.size -= 1
+        temp = self.front
+        self.front = self.front.next
+        return temp.data
+    def size(self):
+        return self.size
+    
+
+a = Queue()
+a.enqueue(3)
+a.enqueue(4)
+a.enqueue(5)
+a.enqueue(6)
+
+print(a.size)
+for b in range(1,5):
+    print(a.dequeue())
