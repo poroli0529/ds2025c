@@ -1,0 +1,121 @@
+class TreeNode:
+    def __init__(self):
+        self.l = None
+        self.r = None
+        self.p = None
+
+def preOrder(node):
+    if node is None:
+        return
+    print(node.p,end="->")
+    preOrder(node.l)
+    preOrder(node.r)
+
+def postOrder(node):
+    if node is None:
+        return
+    postOrder(node.l)
+    postOrder(node.r)
+    print(node.p,end="->")
+
+def inOrder(node):
+    if node is None:
+        return
+    inOrder(node.l)
+    print(node.p,end="->")
+    inOrder(node.r)
+
+def insert(root, data):
+    new = TreeNode()
+    new.p = data
+    if root is None:
+        return new
+    tp = root
+    while True:
+        if data > tp.p:
+            if tp.r is None:
+                tp.r = new
+                break
+            tp = tp.r
+        else:
+            if tp.l is None:
+                tp.l = new
+                break
+            tp = tp.l
+    return root
+
+def search(data):
+    tp = root
+    while tp:
+        if tp.p == data:
+            return True
+        elif tp.p > data:
+            if tp.l is None:
+                return False
+            tp = tp.l      
+        else: # tp.p < data
+            if tp.r is None:
+                return False
+            tp = tp.r 
+ 
+            
+
+def delete(node, data):
+    if node is None:
+        return node
+    
+    if data > node.p:
+        node.r = delete(node.r, data)
+
+    elif data < node.p:
+        node.l = delete(node.l, data)
+
+    else:
+        if node.l is None:
+            return node.r
+        elif node.r is None:
+            return node.l
+        
+        mln = node.r
+        while mln.l : 
+            mln = mln.l
+        node.p = mln.p
+        node.r = delete(node.r, mln.p)
+    return node
+    
+           
+
+
+if __name__ == "__main__":
+    numbers = [10, 15, 8, 3, 9, 14]
+    # numbers = [10, 15, 8, 3, 9, 1, 7, 100]
+    root = None
+
+    for number in numbers:
+        root = insert(number)
+
+    print("BST 구성 완료")
+
+    postOrder(root)  # 3->9->8->15->10
+    print()
+    inOrder(root)  # 3->8->9->10->15
+    print()
+    preOrder(root)  # 10->8->3->9->15
+    print()
+
+    find_number = int(input("찾는 값 입력 : "))
+    if search(root, find_number):
+        print(f"{find_number}을(를) 찾았습니다")
+    else:
+        print(f"{find_number}이(가) 존재하지 않습니다")
+
+
+    delete_number =  int(input("제거할 값 입력 : "))
+    root = delete(root, delete_number)
+
+    postOrder(root)
+    print()
+    inOrder(root)
+    print()
+    preOrder(root)
+    print()
