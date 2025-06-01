@@ -46,11 +46,14 @@ g1.graph[대전][서울] = 11;g1.graph[대전][속초] = 12;g1.graph[대전][광
 g1.graph[광주][서울] = 50;g1.graph[광주][대전] = 20;g1.graph[광주][부산] = 25
 g1.graph[부산][대전] = 30;g1.graph[부산][광주] = 25
 
-for i in range(gSize):
-    for j in range(gSize):
-        print(f"{g1.graph[i][j]: 3}",end=' ')
-    print();
 
+def printGraph():
+    for i in range(gSize):
+        for j in range(gSize):
+            print(f"{g1.graph[i][j]: 3}",end=' ')
+        print()
+
+printGraph()
 
 edgeAry = []
 for i in range(gSize):
