@@ -1,0 +1,126 @@
+
+class Graph:
+    def __init__(self, size):
+        self.graph = [[0 for _ in range(size)] for _ in range(size)]
+        self.size = size
+
+def find_vertex(g, find_vtx) :
+	stack = list()
+	visited_ary = list()
+
+	current = 0	# 시작 정점
+	stack.append(current)
+	visited_ary.append(current)
+
+	while stack:
+		next = None
+		for vertex in range(gSize):
+			if g.graph[current][vertex] != 0:  # 연결되어 있으면
+				if vertex in visited_ary:	# 방문한 적이 있는 정점
+					pass
+				else :			# 방문한 적이 없으면
+					next = vertex  #  다음 정점으로 지정
+					break
+
+		if next is not None:				# 다음에 방문할 정점이 있는 경우
+			current = next
+			stack.append(current)  # push
+			visited_ary.append(current)  # push
+		else :					# 다음에 방문할 정점이 없는 경우
+			current = stack.pop()
+
+	if find_vtx in visited_ary:
+		return True
+	else :
+		return False
+
+g1 = None
+nameAry = ['춘천','서울','속초','대전','광주','부산']
+춘천,서울,속초,대전,광주,부산 = 0,1,2,3,4,5
+gSize = 6
+g1 = Graph(gSize)
+g1.graph[춘천][서울] = 10;g1.graph[춘천][속초] = 15
+g1.graph[서울][춘천] = 10;g1.graph[서울][속초] = 40;g1.graph[서울][대전] = 11;g1.graph[서울][광주] = 50
+g1.graph[속초][춘천] = 15;g1.graph[속초][서울] = 40;g1.graph[속초][대전] = 12
+g1.graph[대전][서울] = 11;g1.graph[대전][속초] = 12;g1.graph[대전][광주] = 20;g1.graph[대전][부산] = 30
+g1.graph[광주][서울] = 50;g1.graph[광주][대전] = 20;g1.graph[광주][부산] = 25
+g1.graph[부산][대전] = 30;g1.graph[부산][광주] = 25
+
+for i in range(gSize):
+    for j in range(gSize):
+        print(f"{g1.graph[i][j]: 3}",end=' ')
+    print();
+
+
+edgeAry = []
+for i in range(gSize):
+    for j in range(gSize):
+        if g1.graph[i][j] != 0:
+            edgeAry.append([g1.graph[i][j],nameAry[i],nameAry[j]])
+
+def delete(graph, newAry , nameAry, index):
+    
+    start = nameAry.index(newAry[index][1])
+    end = nameAry.index(newAry[index][2])
+    saveCost = newAry[index][0] #가중치 저장
+
+    g1.graph[start][end] = 0
+    g1.graph[end][start] = 0
+
+    startYN = find_vertex(g1,start)
+    endYN = find_vertex(g1,end)
+
+    if startYN and endYN:
+        del(newAry[index]) # 인덱스 0번인 처음 간선 삭제
+    else:
+          g1.graph[start][end] = saveCost
+          g1.graph[end][start] = saveCost
+          index += 1
+    return index
+
+
+for i in range(len(edgeAry)):
+    print(edgeAry[i], end=' \n')
+from operator import itemgetter
+edgeAry = sorted(edgeAry, key=itemgetter(0), reverse=True)
+print();
+print()
+print()
+for i in range(len(edgeAry)):
+    print(edgeAry[i], end=' \n')
+print();
+print()
+print()
+
+newAry = []
+for i in range(0,len(edgeAry),2):
+    newAry.append(edgeAry[i])
+for i in range(len(newAry)):
+    print(newAry[i])
+index = 0 
+index = delete(g1.graph, newAry , nameAry , index)
+
+print()
+for i in range(len(newAry)):
+    print(newAry[i])
+print()
+index = delete(g1.graph, newAry , nameAry , index)
+print()
+for i in range(len(newAry)):
+    print(newAry[i])
+print()
+index = delete(g1.graph, newAry , nameAry , index)
+print()
+for i in range(len(newAry)):
+    print(newAry[i])
+print()
+index = delete(g1.graph, newAry , nameAry , index)
+print()
+for i in range(len(newAry)):
+    print(newAry[i])
+print()
+index = delete(g1.graph, newAry , nameAry , index)
+print()
+for i in range(len(newAry)):
+    print(newAry[i])
+print()
