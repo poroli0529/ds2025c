@@ -1,0 +1,20 @@
+import math
+def is_prime(n):
+    if n <= 1: # 1보다 작을 때 1이거나
+        return False
+    elif n == 2: # 2일 때
+        return True
+    elif n % 2 == 0: # 짝수일 때
+        return False
+    else:       # 
+        for i in range(3, int(math.sqrt(n)) + 1, 2):
+            if n % i == 0:
+                return False
+    return True
+# 두 숫자 입력받는다.
+s,e = map(int , input().split(' '))
+# for문으로 인덱스를 돌려가면서 회전한다
+for i in range(s,e+1):
+    if is_prime(i):
+        print(i)
+# 소수의 조건으로 소수를 걸러낸다.
