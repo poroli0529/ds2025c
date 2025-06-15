@@ -92,7 +92,7 @@ if __name__ == "__main__":
     root = None
 
     for number in numbers:
-        root = insert(number)
+        root = insert(root,number)
 
     print("BST 구성 완료")
 
